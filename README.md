@@ -2,6 +2,8 @@
 
 Welcome to this hands-on lab focused on **functional programming in Java** using **Streams**, **OpenCSV**, and a clean, testable data model. You’ll explore modern techniques for processing data in a more declarative style—less telling the computer how to do something, and more just telling it *what* you want.
 
+Hody dudy mr. man
+
 ---
 
 ## 🔄 Submitting Your Lab
