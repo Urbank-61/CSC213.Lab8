@@ -21,7 +21,7 @@ public class App {
                 .parse();
 
         System.out.println("Loaded Reviews:");
-        reviews.forEach(System.out::println);
+        reviews.forEach(System.out::println); // for(Review review:reveiws){ System.out.print(reviews)}
 
         System.out.println("\n--- Reviews with price between 20 and 100 ---");
         filterByPriceRange(reviews, 20, 100).forEach(System.out::println);
@@ -117,7 +117,12 @@ public class App {
 
     public static List<Review> filterByPriceRange(List<Review> reviews, double min, double max) {
         //TODO - you need to implement this using a functional approach!
-        return null;
+        return reviews.stream()
+            .filter(r ->
+                r.getPrice() >= min &&
+                r.getPrice() <= max
+            )
+            .collect(Collectors.toList());
     }
 
     public static Map<String, Long> countByProductId(List<Review> reviews) {
@@ -151,6 +156,10 @@ public class App {
 
     public static List<String> getHomeProductIdsUnder100(List<Review> reviews) {
         //TODO - you need to implement this using a functional approach!
+        // look up implementation of a compartor in java on a stirng
+        /*
+         * list Reviews 
+         */
         return new ArrayList<String>();                             // Final list of productIds
     }
 
