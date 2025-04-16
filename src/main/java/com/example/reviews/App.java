@@ -5,6 +5,8 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -116,7 +118,7 @@ public class App {
 
 
     public static List<Review> filterByPriceRange(List<Review> reviews, double min, double max) {
-        //TODO - you need to implement this using a functional approach!
+        //TODO - you need to implement this using a functional approach! CHECK
         return reviews.stream()
             .filter(r ->
                 r.getPrice() >= min &&
@@ -155,13 +157,33 @@ public class App {
 
 
     public static List<String> getHomeProductIdsUnder100(List<Review> reviews) {
-        //TODO - you need to implement this using a functional approach!
-        // look up implementation of a compartor in java on a stirng
-        /*
-         * list Reviews 
-         */
-        return new ArrayList<String>();                             // Final list of productIds
-    }
+        //TODO - you need to implement this using a functional approach! CHECK
+        
+        return reviews.stream()
+            .filter(r -> "Home".equalsIgnoreCase(r.getCategory()))
+            .filter(r -> r.getPrice() < 100)
+            .sorted(Comparator.comparingDouble(Review::getPrice)) 
+            .map(Review::getProductId)
+            .filter(Objects::nonNull)
+            .map(String::trim)
+            .collect(Collectors.toList());
+
+        //first attempt    
+        /* 
+        List<String> result = new ArrayList<>();
+        for (Review r: reviews){
+            if ("Home".equalsIgnoreCase(r.getCategory()) && r.getPrice() < 100) {
+                String productId = r.getProductId();
+                if (productId != null) {
+                    result.add(productId.trim().toUpperCase());
+                }
+            }
+        }
+        Collections.sort(result);
+        return result;
+        */
+        }
+
 
     
 
